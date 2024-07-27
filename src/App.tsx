@@ -1,14 +1,14 @@
-import { AppRoutes } from "./routes/AppRoutes";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { AppRoutes } from "./routes/AppRoutes";
+import { store } from "./store";
 
-const App = () => {
+export const App = () => {
   return (
-    <div>
+    <Provider store={store}>
       <Router>
         <AppRoutes />
       </Router>
-    </div>
+    </Provider>
   );
 };
-
-export default App;

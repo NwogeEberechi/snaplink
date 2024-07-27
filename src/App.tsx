@@ -1,8 +1,13 @@
+import { AppRoutes } from "./routes/AppRoutes";
+import { BrowserRouter as Router } from "react-router-dom";
+
 const App = () => {
   return (
-    <>
-      <p className="read-the-docs">Hello Snap link</p>
-    </>
+    <div>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </div>
   );
 };
 

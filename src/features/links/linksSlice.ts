@@ -7,7 +7,7 @@ interface Link {
   clicks: number;
 }
 
-interface LinksState {
+export interface LinksState {
   links: Link[];
   counter: number;
 }

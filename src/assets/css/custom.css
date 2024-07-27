@@ -6,10 +6,10 @@
 /* ROOT DECLARATION */
 :root {
     --rk-primary: rgba(241, 98, 54, 1);
-    --rk-colorBlack: "#000";
+    --rk-color-black: #212732;
     --rk-primary-padding: 0;
     --rk-primary-margin: 0;
-    --rk-sidebarBg: rgba(19, 26, 33, 1);
+    --rk-background-color: rgba(249, 250, 251, .8);
     --rk-auth-caption: rgba(16, 15, 36, 1);
     --rk-auth-label: rgba(52, 64, 84, 1);
     --rk-colorWhite: rgba(255, 255, 255, 1);
@@ -17,6 +17,7 @@
     --rk-colorGrayLight: rgba(145, 150, 151, 0.1);
     --rk-primary-variant: rgba(252, 225, 217, 1);
     --rk-primary-light: rgba(254, 247, 245, 1);
+    --rk-border-color: #e5e7eb;
     --rk-fontManrope: "Manrope", sans-serif;
 }
 
@@ -33,6 +34,7 @@ body {
     scrollbar-width: none;
     scroll-snap-type: both mandatory;
     font-family: var(--rk-fontManrope);
+    background-color: var(--rk-background-color)
 }
 
 a {
@@ -74,4 +76,55 @@ a {
 
 .cursor {
     cursor: pointer;
+}
+
+.border {
+    border: 0 solid var(--rk-border-color);
+}
+
+.links_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+    height: 100vh;;
+}
+
+.links_content {
+    width: 60%;
+    height: 80%;
+}
+
+.label {
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--rk-auth-caption);
+    line-height: 32px;
+}
+
+.ant-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--rk-color-black);
+    border: none;
+    width: 100%;
+    font-weight: 700;
+    color: var(--rk-colorWhite);
+    height: 36px;
+    box-shadow: none;
+}
+
+.ant-btn:hover {
+    border: var(--rk-color-black);
+    box-shadow: none;
+    background: var(--rk-color-black) !important;
+    color: var(--rk-colorWhite) !important;
+}
+
+.ant-btn:disabled {
+    background: var(--rk-colorGrayLight) !important;
+    color: var(--rk-auth-label) !important;
 }

@@ -13,7 +13,9 @@ export const HomePage: React.FC = () => {
             <div className="label">Links</div>
             <div className="flex justify-end items-center gap-2">
               <SearchBar />
-              <UrlForm />
+              <div className="min-w-[140px]">
+                <UrlForm />
+              </div>
             </div>
           </div>
           <div className="mTop20">

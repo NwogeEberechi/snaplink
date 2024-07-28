@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useAppSelector } from "../../hooks";
 import { LinkCard } from "./LinkCard";
+import { NoLinks } from "../../components/NoLinks";
 
 export const LinkList: React.FC = () => {
   const { links, searchTerm, currentPage, pageSize } = useAppSelector(
@@ -28,6 +29,10 @@ export const LinkList: React.FC = () => {
       currentPage * pageSize
     );
   }, [currentPage, pageSize, filteredLinks]);
+
+  if (paginatedLinks.length === 0) {
+    return <NoLinks />;
+  }
 
   return (
     <div className="space-y-4">

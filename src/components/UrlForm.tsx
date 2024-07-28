@@ -34,11 +34,19 @@ export const UrlForm: React.FC = (): JSX.Element => {
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      dispatch(addLink({ longUrl }));
-      setLongUrl("");
-      setIsModalOpen(false);
+      if (isValid) {
+        try {
+          dispatch(addLink({ longUrl }));
+          setLongUrl("");
+          setIsModalOpen(false);
+        } catch (error) {
+          setError("URL already exists.");
+        }
+      } else {
+        setError("Please enter a valid URL.");
+      }
     },
-    [dispatch, longUrl]
+    [dispatch, longUrl, isValid]
   );
 
   return (

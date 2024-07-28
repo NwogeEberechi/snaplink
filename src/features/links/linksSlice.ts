@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { encode } from "../../utils";
 
 interface Link {
   id: number;
   longUrl: string;
   shortUrl: string;
+  urlCode: string;
   clicks: number;
 }
 
@@ -43,15 +45,24 @@ export const linksSlice = createSlice({
   initialState,
   reducers: {
     addLink: (state, action: PayloadAction<{ longUrl: string }>) => {
-      const newId = state.counter + 1;
-      const shortUrl = "abcdef"; // will be encoded later
-      state.links.push({
-        id: newId,
-        longUrl: action.payload.longUrl,
-        shortUrl,
-        clicks: 0,
-      });
-      state.counter = newId;
+      const longUrl = action.payload.longUrl;
+      const urlCode = encode(longUrl);
+      const shortUrl = `${window.location.origin}/${urlCode}`;
+
+      const existingLink = state.links.find((link) => link.urlCode === urlCode);
+
+      if (existingLink) {
+        throw new Error("Short URL already exists.");
+      } else {
+        state.links.push({
+          id: state.counter,
+          longUrl,
+          shortUrl,
+          urlCode,
+          clicks: 0,
+        });
+        state.counter += 1;
+      }
       saveState(state);
     },
   },

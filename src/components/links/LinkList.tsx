@@ -3,10 +3,14 @@ import { useAppSelector } from "../../hooks";
 import { LinkCard } from "./LinkCard";
 
 export const LinkList: React.FC = () => {
-  const { links, searchTerm } = useAppSelector((state) => ({
-    links: state.links.links,
-    searchTerm: state.links.searchTerm,
-  }));
+  const { links, searchTerm, currentPage, pageSize } = useAppSelector(
+    (state) => ({
+      links: state.links.links,
+      searchTerm: state.links.searchTerm,
+      currentPage: state.links.currentPage,
+      pageSize: state.links.pageSize,
+    })
+  );
 
   const filteredLinks = useMemo(() => {
     if (searchTerm?.length >= 3) {
@@ -18,9 +22,16 @@ export const LinkList: React.FC = () => {
     return links;
   }, [links, searchTerm]);
 
+  const paginatedLinks = useMemo(() => {
+    return filteredLinks.slice(
+      (currentPage - 1) * pageSize,
+      currentPage * pageSize
+    );
+  }, [currentPage, pageSize, filteredLinks]);
+
   return (
     <div className="space-y-4">
-      {filteredLinks.map((link) => (
+      {paginatedLinks.map((link) => (
         <LinkCard key={link.urlCode} link={link} />
       ))}
     </div>

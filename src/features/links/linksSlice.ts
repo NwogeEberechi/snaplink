@@ -14,6 +14,8 @@ export interface LinksState {
   links: Link[];
   counter: number;
   searchTerm: string;
+  currentPage: number;
+  pageSize: number;
 }
 
 const loadState = (): LinksState | undefined => {
@@ -41,6 +43,8 @@ const initialState: LinksState = loadState() || {
   links: [],
   counter: 0,
   searchTerm: "",
+  currentPage: 1,
+  pageSize: 5,
 };
 
 export const linksSlice = createSlice({
@@ -85,9 +89,21 @@ export const linksSlice = createSlice({
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
     },
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
+    setPageSize: (state, action: PayloadAction<number>) => {
+      state.pageSize = action.payload;
+    },
   },
 });
 
 const { actions, reducer } = linksSlice;
-export const { addLink, incrementClicks, setSearchTerm } = actions;
+export const {
+  addLink,
+  incrementClicks,
+  setSearchTerm,
+  setCurrentPage,
+  setPageSize,
+} = actions;
 export const linksReducer = reducer;

@@ -2,6 +2,7 @@ import React from "react";
 import { UrlForm } from "../components/UrlForm";
 import { SearchBar } from "../components/SearchBar";
 import { LinkList } from "../components/links/LinkList";
+import Pagination from "../components/Pagination";
 
 export const HomePage: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ export const HomePage: React.FC = () => {
           <div className="mTop20">
             <LinkList />
           </div>
+          <Pagination />
         </div>
       </section>
     </div>

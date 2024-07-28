@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Link } from "../../features/links/linksSlice";
+import { Link } from "./linksSlice";
 
 interface LinkCardProps {
   link: Link;

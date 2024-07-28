@@ -3,7 +3,7 @@ import React from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import { useAppSelector, useAppDispatch } from "../hooks";
-import { setSearchTerm } from "../features/links/linksSlice";
+import { setSearchTerm } from "./links/linksSlice";
 
 export const SearchBar = () => {
   const dispatch = useAppDispatch();

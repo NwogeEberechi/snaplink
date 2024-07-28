@@ -1,7 +1,7 @@
 // src/components/Pagination.tsx
 import React, { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { setCurrentPage } from "../features/links/linksSlice";
+import { setCurrentPage } from "./links/linksSlice";
 
 export const Pagination: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();

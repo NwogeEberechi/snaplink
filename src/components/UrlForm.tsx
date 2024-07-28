@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { Modal, Button } from "antd";
 import { useAppDispatch } from "../hooks";
 import { isValidUrl } from "../utils";
-import { addLink } from "../features/links/linksSlice";
+import { addLink } from "./links/linksSlice";
 
 export const UrlForm: React.FC = (): JSX.Element => {
   const [longUrl, setLongUrl] = useState("");

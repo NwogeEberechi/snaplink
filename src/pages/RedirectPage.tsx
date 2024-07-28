@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { incrementClicks } from "../features/links/linksSlice";
+import { incrementClicks } from "../components/links/linksSlice";
 
 export const RedirectPage: React.FC = () => {
   const { urlCode } = useParams();

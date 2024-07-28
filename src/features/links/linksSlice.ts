@@ -13,6 +13,7 @@ export interface Link {
 export interface LinksState {
   links: Link[];
   counter: number;
+  searchTerm: string;
 }
 
 const loadState = (): LinksState | undefined => {
@@ -39,6 +40,7 @@ const saveState = (state: LinksState) => {
 const initialState: LinksState = loadState() || {
   links: [],
   counter: 0,
+  searchTerm: "",
 };
 
 export const linksSlice = createSlice({
@@ -80,9 +82,12 @@ export const linksSlice = createSlice({
         saveState(state);
       }
     },
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload;
+    },
   },
 });
 
 const { actions, reducer } = linksSlice;
-export const { addLink, incrementClicks } = actions;
+export const { addLink, incrementClicks, setSearchTerm } = actions;
 export const linksReducer = reducer;

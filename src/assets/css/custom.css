@@ -118,7 +118,7 @@ a {
     width: 100%;
     font-weight: 700;
     color: var(--rk-colorWhite);
-    height: 36px;
+    height: 40px;
     box-shadow: none;
 }
 
@@ -132,6 +132,15 @@ a {
 .ant-btn:disabled {
     background: var(--rk-colorGrayLight) !important;
     color: var(--rk-auth-label) !important;
+}
+
+.ant-input {
+    min-width: 350px;
+    padding: 0 0 0 4px !important;
+}
+
+.ant-input-prefix {
+    margin-left: 10px;
 }
 
 .primary_color_variant {

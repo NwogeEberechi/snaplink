@@ -70,6 +70,10 @@ a {
     margin-top: 10px;
 }
 
+.mTop20 {
+    margin-top: 20px;
+}
+
 .mTop30 {
     margin-top: 30px;
 }
@@ -80,6 +84,7 @@ a {
 
 .border {
     border: 0 solid var(--rk-border-color);
+    border-radius: 10px !important
 }
 
 .links_wrapper {
@@ -127,4 +132,12 @@ a {
 .ant-btn:disabled {
     background: var(--rk-colorGrayLight) !important;
     color: var(--rk-auth-label) !important;
+}
+
+.primary_color_variant {
+    background: var(--rk-primary);
+}
+
+.primary_color_light {
+    background: var(--rk-primary-variant);
 }

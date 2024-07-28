@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { encode } from "../../utils";
 
-interface Link {
+export interface Link {
   id: number;
   longUrl: string;
   shortUrl: string;
   urlCode: string;
   clicks: number;
+  createdAt: string;
 }
 
 export interface LinksState {
@@ -48,6 +49,7 @@ export const linksSlice = createSlice({
       const longUrl = action.payload.longUrl;
       const urlCode = encode(longUrl);
       const shortUrl = `${window.location.origin}/${urlCode}`;
+      const createdAt = new Date().toISOString();
 
       const existingLink = state.links.find((link) => link.urlCode === urlCode);
 
@@ -60,14 +62,21 @@ export const linksSlice = createSlice({
           shortUrl,
           urlCode,
           clicks: 0,
+          createdAt,
         });
         state.counter += 1;
       }
       saveState(state);
     },
+    incrementClicks: (state, action: PayloadAction<string>) => {
+      const link = state.links.find((link) => link.urlCode === action.payload);
+      if (link) {
+        link.clicks += 1;
+      }
+    },
   },
 });
 
 const { actions, reducer } = linksSlice;
-export const { addLink } = actions;
+export const { addLink, incrementClicks } = actions;
 export const linksReducer = reducer;

@@ -1,5 +1,6 @@
 import React from "react";
 import { UrlForm } from "../components/UrlForm";
+import { LinkList } from "../components/links/LinkList";
 
 export const HomePage: React.FC = () => {
   return (
@@ -11,6 +12,9 @@ export const HomePage: React.FC = () => {
             <div>
               <UrlForm />
             </div>
+          </div>
+          <div className="mTop20">
+            <LinkList />
           </div>
         </div>
       </section>

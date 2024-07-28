@@ -1,11 +1,24 @@
 import React, { useCallback } from "react";
-import { Link } from "./linksSlice";
+import { Link, deleteLink } from "./linksSlice";
+import { useAppDispatch } from "../../hooks";
 
 interface LinkCardProps {
   link: Link;
 }
 
 export const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
+  const dispatch = useAppDispatch();
+
+  const handleDelete = useCallback(
+    (urlCode: string) => {
+      const confirmDelete = window.confirm(
+        "Are you sure you want to delete this link?"
+      );
+      confirmDelete && dispatch(deleteLink(urlCode));
+    },
+    [dispatch]
+  );
+
   const copyUrl = useCallback(() => {
     navigator.clipboard.writeText(link.shortUrl);
   }, [link.shortUrl]);
@@ -81,9 +94,17 @@ export const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
           </div>
         </div>
       </div>
-      <p>
-        <span className="cursor">{link.clicks} clicks</span>
-      </p>
+      <div className="flex justify-end items-center gap-2">
+        <button
+          className="flex justify-center items-center border px-4 py-2 rounded-l border-red-500 text-red-500 text-sm h-7 px-2 rounded"
+          onClick={() => handleDelete(link.urlCode)}
+        >
+          Delete
+        </button>
+        <p>
+          <span className="cursor">{link.clicks} clicks</span>
+        </p>
+      </div>
     </div>
   );
 };

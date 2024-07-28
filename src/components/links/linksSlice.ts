@@ -95,6 +95,12 @@ export const linksSlice = createSlice({
     setPageSize: (state, action: PayloadAction<number>) => {
       state.pageSize = action.payload;
     },
+    deleteLink: (state, action: PayloadAction<string>) => {
+      state.links = state.links.filter(
+        (link) => link.urlCode !== action.payload
+      );
+      saveState(state);
+    },
   },
 });
 
@@ -105,5 +111,6 @@ export const {
   setSearchTerm,
   setCurrentPage,
   setPageSize,
+  deleteLink,
 } = actions;
 export const linksReducer = reducer;

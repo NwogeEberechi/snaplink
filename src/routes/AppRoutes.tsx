@@ -7,7 +7,7 @@ export const AppRoutes = () => {
     <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/:shortUrl" element={<RedirectPage />} />
+        <Route path="/:urlCode" element={<RedirectPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

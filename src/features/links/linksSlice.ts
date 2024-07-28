@@ -54,9 +54,9 @@ export const linksSlice = createSlice({
       const existingLink = state.links.find((link) => link.urlCode === urlCode);
 
       if (existingLink) {
-        throw new Error("Short URL already exists.");
+        throw new Error("URL already exists.");
       } else {
-        state.links.push({
+        state.links.unshift({
           id: state.counter,
           longUrl,
           shortUrl,
@@ -69,9 +69,15 @@ export const linksSlice = createSlice({
       saveState(state);
     },
     incrementClicks: (state, action: PayloadAction<string>) => {
-      const link = state.links.find((link) => link.urlCode === action.payload);
-      if (link) {
-        link.clicks += 1;
+      const linkIndex = state.links.findIndex(
+        (link) => link.urlCode === action.payload
+      );
+      if (linkIndex !== -1) {
+        state.links[linkIndex] = {
+          ...state.links[linkIndex],
+          clicks: state.links[linkIndex].clicks + 1,
+        };
+        saveState(state);
       }
     },
   },

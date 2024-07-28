@@ -1,21 +1,14 @@
 import React, { useCallback } from "react";
-import { useAppDispatch } from "../../hooks";
-import { Link, incrementClicks } from "../../features/links/linksSlice";
+import { Link } from "../../features/links/linksSlice";
 
 interface LinkCardProps {
   link: Link;
 }
 
 export const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
-  const dispatch = useAppDispatch();
-
   const copyUrl = useCallback(() => {
     navigator.clipboard.writeText(link.shortUrl);
   }, [link.shortUrl]);
-
-  const incrementLinkClicks = useCallback(() => {
-    dispatch(incrementClicks(link.urlCode));
-  }, [dispatch, link.urlCode]);
 
   return (
     <div className="border p-4 rounded space-y-2 flex items-center justify-between gap-5 sm:gap-8 md:gap-12 text-sm">
@@ -34,7 +27,6 @@ export const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
                 href={`/${link.urlCode}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={incrementLinkClicks}
               >
                 {link.shortUrl}
               </a>
@@ -45,11 +37,11 @@ export const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
                 <span className="sr-only">Copy</span>
                 <svg
                   fill="none"
-                  shape-rendering="geometricPrecision"
+                  shapeRendering="geometricPrecision"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                   width="14"
                   height="14"
@@ -71,17 +63,17 @@ export const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
                   d="M15.25,9.75H4.75c-1.105,0-2-.895-2-2V3.75"
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                 ></path>
                 <polyline
                   fill="none"
                   points="11 5.5 15.25 9.75 11 14"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                 ></polyline>
               </g>
             </svg>

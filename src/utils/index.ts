@@ -40,11 +40,6 @@ export const encode = (longUrl: string) => {
   }
 };
 
-export const decode = (shortUrl: string) => {
-  const shortPath = shortUrl.split("/").pop();
-  return urlMapping.get(shortPath) || null;
-};
-
 export const isValidUrl = (url: string): boolean => {
   try {
     new URL(url);

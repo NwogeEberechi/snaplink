@@ -13,15 +13,23 @@ export const RedirectPage: React.FC = () => {
   }));
 
   useEffect(() => {
+    console.log("RedirectPage useEffect");
     if (urlCode && !hasIncremented.current) {
+      console.log("executing inside if");
       const link = links.find((link) => link.urlCode === urlCode);
+      console.log("link", link);
       if (link) {
+        console.log("link was found");
         dispatch(incrementClicks(link.urlCode));
         hasIncremented.current = true;
         window.location.href = link.longUrl;
+        console.log("going to the long url");
       } else {
         navigate("/");
+        console.log("going going back to default home page");
       }
+    } else {
+      console.log("else block");
     }
   }, [urlCode, dispatch, links, navigate]);
 

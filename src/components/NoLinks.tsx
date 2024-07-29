@@ -1,5 +1,5 @@
 import nolinks from "../assets/nolinks.svg";
-import { UrlForm } from "../components/UrlForm";
+import { UrlForm } from "../components";
 
 export const NoLinks = () => {
   return (

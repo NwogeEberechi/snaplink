@@ -1,8 +1,5 @@
 import React from "react";
-import { UrlForm } from "../components/UrlForm";
-import { SearchBar } from "../components/SearchBar";
-import { LinkList } from "../components/links/LinkList";
-import Pagination from "../components/Pagination";
+import { UrlForm, SearchBar, LinkList, Pagination } from "../components";
 
 export const HomePage: React.FC = () => {
   return (

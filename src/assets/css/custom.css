@@ -13,7 +13,6 @@
     --rk-auth-caption: rgba(16, 15, 36, 1);
     --rk-auth-label: rgba(52, 64, 84, 1);
     --rk-colorWhite: rgba(255, 255, 255, 1);
-    --rk-colorWhiteLight: rgba(255, 255, 255, 0.75);
     --rk-colorGrayLight: rgba(145, 150, 151, 0.1);
     --rk-primary-variant: rgba(252, 225, 217, 1);
     --rk-primary-light: rgba(254, 247, 245, 1);
@@ -39,31 +38,6 @@ body {
 
 a {
     text-decoration: none;
-}
-
-
-.pBottom10 {
-    padding-bottom: 10px;
-}
-
-.pBottom15 {
-    padding-bottom: 15px;
-}
-
-.pBottom20 {
-    padding-bottom: 20px;
-}
-
-.pBottom24 {
-    padding-bottom: 24px;
-}
-
-.pBottom25 {
-    padding-bottom: 25px;
-}
-
-.pBottom30 {
-    padding-bottom: 30px;
 }
 
 .mTop10 {

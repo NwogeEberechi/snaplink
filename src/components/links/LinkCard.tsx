@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
-import { Link, deleteLink } from "./linksSlice";
+import { Link, deleteLink } from "../../components";
 import { useAppDispatch } from "../../hooks";
 
 interface LinkCardProps {
   link: Link;
 }
 
-export const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
+export const LinkCard: React.FC<LinkCardProps> = ({ link }): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleDelete = useCallback(

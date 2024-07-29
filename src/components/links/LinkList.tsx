@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { useAppSelector } from "../../hooks";
-import { LinkCard } from "./LinkCard";
-import { NoLinks } from "../../components/NoLinks";
+import { LinkCard, NoLinks } from "../../components";
 
 export const LinkList: React.FC = () => {
   const { links, searchTerm, currentPage, pageSize } = useAppSelector(

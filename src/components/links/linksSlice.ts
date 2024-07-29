@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { encode } from "../../utils";
 
+const localStorageKey = "links";
 export interface Link {
   id: number;
   longUrl: string;
@@ -20,7 +21,7 @@ export interface LinksState {
 
 const loadState = (): LinksState | undefined => {
   try {
-    const serializedState = localStorage.getItem("links");
+    const serializedState = localStorage.getItem(localStorageKey);
     if (serializedState === null) {
       return undefined;
     }
@@ -33,7 +34,7 @@ const loadState = (): LinksState | undefined => {
 const saveState = (state: LinksState) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem("links", serializedState);
+    localStorage.setItem(localStorageKey, serializedState);
   } catch {
     console.log("Failed to save state");
   }
@@ -54,37 +55,30 @@ export const linksSlice = createSlice({
     addLink: (state, action: PayloadAction<{ longUrl: string }>) => {
       const longUrl = action.payload.longUrl;
       const urlCode = encode(longUrl);
-      const shortUrl = `${window.location.origin}/${urlCode}`;
-      const createdAt = new Date().toISOString();
-
       const existingLink = state.links.find((link) => link.urlCode === urlCode);
 
       if (existingLink) {
         throw new Error("URL already exists.");
       } else {
         state.links.unshift({
-          id: state.counter,
-          longUrl,
-          shortUrl,
-          urlCode,
           clicks: 0,
-          createdAt,
+          id: state.counter,
+          createdAt: new Date().toISOString(),
+          shortUrl: `${window.location.origin}/${urlCode}`,
+          urlCode,
+          longUrl,
         });
         state.counter += 1;
-      }
-      saveState(state);
-    },
-    incrementClicks: (state, action: PayloadAction<string>) => {
-      const linkIndex = state.links.findIndex(
-        (link) => link.urlCode === action.payload
-      );
-      if (linkIndex !== -1) {
-        state.links[linkIndex] = {
-          ...state.links[linkIndex],
-          clicks: state.links[linkIndex].clicks + 1,
-        };
         saveState(state);
       }
+    },
+    incrementClicks: (state, action: PayloadAction<string>) => {
+      state.links = state.links.map((link) => {
+        return link.urlCode === action.payload
+          ? { ...link, clicks: link.clicks + 1 }
+          : link;
+      });
+      saveState(state);
     },
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
@@ -114,3 +108,4 @@ export const {
   deleteLink,
 } = actions;
 export const linksReducer = reducer;
+

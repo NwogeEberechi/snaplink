@@ -1,7 +1,7 @@
 // src/components/Pagination.tsx
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { setCurrentPage } from "./links/linksSlice";
+import { setCurrentPage } from "../components";
 
 export const Pagination: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -20,17 +20,17 @@ export const Pagination: React.FC = (): JSX.Element => {
       ${Math.min(currentPage * pageSize, totalLinks)}`;
   }, [currentPage, pageSize, totalLinks]);
 
-  const handlePreviousPage = () => {
+  const handlePreviousPage = useCallback(() => {
     if (currentPage > 1) {
       dispatch(setCurrentPage(currentPage - 1));
     }
-  };
+  }, [currentPage, dispatch]);
 
-  const handleNextPage = () => {
+  const handleNextPage = useCallback(() => {
     if (currentPage < totalPages) {
       dispatch(setCurrentPage(currentPage + 1));
     }
-  };
+  }, [currentPage, totalPages, dispatch]);
 
   return (
     <div className="fixed bottom-4 left-1/2 w-full max-w-[768px] -translate-x-1/2 px-2.5 max-[920px]:bottom-5 max-[920px]:pr-20">
@@ -65,5 +65,3 @@ export const Pagination: React.FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default Pagination;

@@ -16,6 +16,8 @@ export const Pagination: React.FC = (): JSX.Element => {
   const totalPages = Math.ceil(totalLinks / pageSize);
 
   const totalLinksInViewport = useMemo(() => {
+    if (totalLinks === 0) return "0 - 0";
+
     return `${(currentPage - 1) * pageSize + 1} -
       ${Math.min(currentPage * pageSize, totalLinks)}`;
   }, [currentPage, pageSize, totalLinks]);

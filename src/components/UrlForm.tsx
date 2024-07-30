@@ -12,7 +12,11 @@ export const UrlForm: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setIsValid(isValidUrl(longUrl));
+    const valid = isValidUrl(longUrl);
+    setIsValid(valid);
+    if (valid) {
+      setError("");
+    }
   }, [longUrl]);
 
   const showModal = useCallback(() => {

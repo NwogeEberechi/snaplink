@@ -58,7 +58,7 @@ export const Pagination: React.FC = (): JSX.Element => {
             type="button"
             className="flex w-full items-center justify-center border px-4 py-2 rounded-l text-sm h-7 px-2 border-gray-400 text-gray-600 disabled:opacity-50"
             onClick={handleNextPage}
-            disabled={currentPage === totalPages}
+            disabled={totalLinks === 0 || currentPage === totalPages}
           >
             <div>Next</div>
           </button>
